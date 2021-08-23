@@ -12,9 +12,10 @@ RUN rm -rf /var/www/html/* && mkdir -p /var/www/html
 ADD src /var/www/html
 
 # Configure apache
-RUN chown -R apache:apache /var/www
-ENV APACHE_RUN_USER apache
-ENV APACHE_RUN_GROUP apache
+RUN chown -R 0 /var/www
+RUN chmod -R g=u /var/www
+#ENV APACHE_RUN_USER apache
+#ENV APACHE_RUN_GROUP apache
 ENV APACHE_LOG_DIR /var/log/apache2
 
 EXPOSE 80
